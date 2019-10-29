@@ -1,9 +1,12 @@
 import axios from 'axios';
 
-export function getUsers(page) {
-    return (dispatch) => {
+export function getUsers() {
+    return (dispatch, getState) => {
+        let total;
+        (getState().usersReducer.total === 0) ? total = 20 : total = getState().usersReducer.total;
+
         dispatch({type: "USERS_REQUEST"});
-        axios.get("https://reqres.in/api/users?page="+page)
+        axios.get("https://reqres.in/api/users?per_page=" + total)
             .then((response) => {
                 dispatch({type: "USERS_SUCCESS", payload: response.data})
             })
@@ -13,19 +16,29 @@ export function getUsers(page) {
     } 
 }
 
-/* export function addUser(details) {
-    return (dispatch) => {
+export function addUser() {
+    return (dispatch, getState) => {
+        let user = {
+            data: {
+                id: getState().usersReducer.total + 1,
+                first_name: 'Niki',
+                last_name: 'niki',
+                avatar: ''
+            }
 
+        }
+        dispatch({type: "USERS_ADD", payload: user});
+        this.getUsers();
     }
-} */
+}
 
-export function searchUsers(query, total) {
+export function searchUsers(query) {
     if (query.length<2) {
         return(dispatch) => dispatch({type:"SEARCH_START"});
     }
     else {
-        return (dispatch) => {
-            axios.get("https://reqres.in/api/users?per_page=" + total)
+        return (dispatch, getState) => {
+            axios.get("https://reqres.in/api/users?per_page=" + getState().usersReducer.total)
                 .then((response) => {
                     dispatch({type: "SEARCH_START"})
                     response.data.data.forEach(item => {
@@ -33,6 +46,13 @@ export function searchUsers(query, total) {
                             dispatch({type: "SEARCH_ADD", payload: item})
                         }
                     });
+                    if (getState().usersReducer.addedUsers.length !== 0) {
+                        getState().usersReducer.addedUsers.forEach(item => {
+                            if (item.first_name.toLowerCase().includes(query.toLowerCase()) || item.last_name.toLowerCase().includes(query.toLowerCase())) {
+                                dispatch({type: "SEARCH_ADD", payload: item})
+                            }
+                        });
+                    }
                     dispatch({type: "SEARCH_SUCCESS"})
                 })
                 .catch((err) => {

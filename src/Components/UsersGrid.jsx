@@ -6,14 +6,30 @@ import PageNumber from './PageNumber';
 
 
 class UsersGrid extends Component {
+    constructor() {
+        super();
+        this.state = {
+            page: 1
+        }
+        this.changePage = this.changePage.bind(this);
+    }
     componentDidMount() {
-        this.props.getUsers(1)
+        this.props.getUsers()
+    }
+
+    UNSAFE_componentWillReceiveProps() {
+        this.changePage(1);
     }
 
     render() {
+        
         let dataComponents;
-        let pageNumbers = [<PageNumber key={1} page={1}/>];
-
+        let pageNumbers = [
+            <PageNumber 
+                key = {1} 
+                page = {1} 
+                changePage = {this.changePage} 
+                className = {(this.state.page === 1 ? 'activePageButton' : '')}/>];
         if (this.props.results.length !== 0) {
             dataComponents = this.props.results.map(
                 item => <UsersGridItem key={item.id} data={item}/>   
@@ -29,7 +45,12 @@ class UsersGrid extends Component {
             let numberOfPages = Math.ceil(this.props.total/6);
             for (let i = 2; i<=numberOfPages; i++) {
                 pageNumbers.push(
-                    <PageNumber key={i} page={i} />
+                    <PageNumber
+                        key={i} 
+                        page={i} 
+                        changePage={this.changePage}
+                        className = {(this.state.page === i ? 'activePageButton' : '')}
+                    />
                 )
             }
         }
@@ -37,23 +58,27 @@ class UsersGrid extends Component {
             let numberOfPages = Math.ceil(this.props.results/6);
             for (let i = 2; i<=numberOfPages; i++) {
                 pageNumbers.push(
-                    <PageNumber key={i} page={i} />
+                    <PageNumber
+                        key={i} 
+                        page={i} 
+                        changePage={this.changePage}
+                        className = {(this.state.page === i ? 'activePageButton' : '')}
+                    />
                 )
             }
         }
-        
         return(
             <div className="usersGridContainer">
-                {dataComponents}
+                {dataComponents.slice(this.state.page*6-6, this.state.page*6)}
                 <div className="pageNumbersContainer">
                     {(pageNumbers.length>1) ? pageNumbers: ''}
                 </div>
                 
             </div>
         )
-
-
-
+    }
+    changePage(pageNumber) {
+        this.setState({ page: pageNumber});
     }
 }
 
@@ -65,4 +90,3 @@ function mapStateToProps(state) {
     }
 }
 export default connect(mapStateToProps, {getUsers})(UsersGrid);
-//export default connect((state) => ({users: state.usersReducer.users}), {getUsers})(UsersGrid);

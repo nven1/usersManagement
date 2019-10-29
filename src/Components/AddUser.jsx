@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import FormModal from './FormModal';
+import { addUser, getUsers } from '../Actions/actions';
 
 class AddUser extends Component {
     constructor() {
@@ -24,8 +26,9 @@ class AddUser extends Component {
     }
 
     showModal() {
-        this.setState({showModal: true})
+        //this.setState({showModal: true})
+        this.props.addUser()
     }
 }
 
-export default AddUser;
+export default connect(null, {addUser, getUsers})(AddUser);

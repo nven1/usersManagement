@@ -127,7 +127,7 @@ code {
 .pageNumbersContainer {
   display: flex;
   justify-self: center;
-  grid-column: 2;
+  grid-area: 3/2;
   margin-top: 5vh;
 }
 
@@ -136,4 +136,9 @@ code {
   width: 5vh;
   justify-content: center;
   @extend %buttonPreset;
+}
+
+.activePageButton {
+  background-color: rgb(196, 196, 196);
+  font-weight: 600;
 }

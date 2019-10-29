@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import GridItem from './GridItem';
+import UsersGridItem from './UsersGridItem';
 import { connect } from 'react-redux';
-import { getUsers } from '../Actions/usersActions';
+import { getUsers } from '../Actions/actions';
 import PageNumber from './PageNumber';
 
 
@@ -16,12 +16,12 @@ class UsersGrid extends Component {
 
         if (this.props.results.length !== 0) {
             dataComponents = this.props.results.map(
-                item => <GridItem key={item.id} data={item}/>   
+                item => <UsersGridItem key={item.id} data={item}/>   
             );
         }
         else {
             dataComponents = this.props.users.map(
-                item => <GridItem key={item.id} data={item}/>   
+                item => <UsersGridItem key={item.id} data={item}/>   
             ); 
         }
 

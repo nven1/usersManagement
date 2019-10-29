@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-class GridItem extends Component {
+class UsersGridItem extends Component {
     render() {
         return(
-            <div className="gridItem">
+            <div className="usersGridItem">
                 <img src={this.props.data.avatar} alt='avatar'/>
                 <span>{this.props.data.first_name} <br/> {this.props.data.last_name}</span>
             </div>
@@ -11,4 +11,4 @@ class GridItem extends Component {
     }
 }
 
-export default GridItem;
+export default UsersGridItem;

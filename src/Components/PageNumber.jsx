@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { getUsers } from '../Actions/usersActions';
+import { getUsers } from '../Actions/actions';
 
 class PageNumber extends Component {
     constructor() {

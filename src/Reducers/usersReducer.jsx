@@ -3,7 +3,8 @@ export default function usersReducer(state = {
     total: 0,
     requested: false,
     success: false,
-    error: null
+    error: null,
+    added: false
 }, action) {
     
     switch (action.type) {
@@ -14,7 +15,7 @@ export default function usersReducer(state = {
         case "USERS_SUCCESS":
             return {...state, requested: false, success: true, users: action.payload.data, total: action.payload.total}
         case "USERS_ADD":
-            return {...state, users: [...state.users, action.payload]}
+            return {...state, users: [...state.users, action.payload], added: true}
         default:
                 
             return state

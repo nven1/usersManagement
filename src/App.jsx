@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import UsersScreen from './Components/UsersScreen';
 import {Provider} from 'react-redux'
 

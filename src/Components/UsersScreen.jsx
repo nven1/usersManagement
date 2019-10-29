@@ -1,16 +1,14 @@
 import React from 'react';
 
-import UsersSearch from './UsersSearch';
+import ToolbarContainer from './ToolbarContainer';
 import UsersGrid from './UsersGrid';
-/* import { connect } from 'react-redux';
-import { getUsers } from '../Actions/usersActions'; */
 
 
 class UsersScreen extends React.Component  {
     render() {
         return(
             <div>
-                <UsersSearch/>
+                <ToolbarContainer/>
                 <UsersGrid/>
             </div>
         )

@@ -11,6 +11,8 @@ export default function searchReducer(state = {
             return {...state, requested: false, error: action.payload}
         case "SEARCH_ADD":
             return {...state, matches: [...state.matches, action.payload]}
+        case "SEARCH_SUCCESS":
+            return {...state, requested: false, success: true}
         default:
             return state
     }

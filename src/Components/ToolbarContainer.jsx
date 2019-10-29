@@ -3,10 +3,10 @@ import React, {Component} from 'react';
 import SearchInput from './SearchInput';
 import AddUser from './AddUser';
 
-class UsersSearch extends Component {
+class ToolbarContainer extends Component {
     render() {
         return(
-            <div className="searchBar">
+            <div className="toolbarContainer">
                 <SearchInput/>
                 <AddUser/>
             </div>
@@ -14,4 +14,4 @@ class UsersSearch extends Component {
     }
 }
 
-export default UsersSearch;
+export default ToolbarContainer;

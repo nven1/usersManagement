@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-
-
 export function getUsers(page) {
     return (dispatch) => {
-        console.log(page)
+        dispatch({type: "USERS_REQUEST"});
         axios.get("https://reqres.in/api/users?page="+page)
             .then((response) => {
                 dispatch({type: "USERS_SUCCESS", payload: response.data})
@@ -14,6 +12,12 @@ export function getUsers(page) {
             })
     } 
 }
+
+/* export function addUser(details) {
+    return (dispatch) => {
+
+    }
+} */
 
 export function searchUsers(query, total) {
     if (query.length<2) {
@@ -29,6 +33,7 @@ export function searchUsers(query, total) {
                             dispatch({type: "SEARCH_ADD", payload: item})
                         }
                     });
+                    dispatch({type: "SEARCH_SUCCESS"})
                 })
                 .catch((err) => {
                     dispatch({type: "SEARCH_ERROR", payload: err})

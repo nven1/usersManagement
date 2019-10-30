@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import UsersGridItem from './UsersGridItem';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUsers } from '../Actions/actions';
 import PageNumber from './PageNumber';
@@ -22,14 +23,15 @@ class UsersGrid extends Component {
     }
 
     render() {
-        
         let dataComponents;
         let pageNumbers = [
             <PageNumber 
                 key = {1} 
                 page = {1} 
                 changePage = {this.changePage} 
-                className = {(this.state.page === 1 ? 'activePageButton' : '')}/>];
+                className = {(this.state.page === 1 ? 'activePageButton' : '')}
+            />
+        ];
         if (this.props.results.length !== 0) {
             dataComponents = this.props.results.map(
                 item => <UsersGridItem key={item.id} data={item}/>   
@@ -80,6 +82,12 @@ class UsersGrid extends Component {
     changePage(pageNumber) {
         this.setState({ page: pageNumber});
     }
+}
+
+UsersGrid.propTypes = {
+    total: PropTypes.number,
+    results: PropTypes.array,
+    users: PropTypes.array
 }
 
 function mapStateToProps(state) {

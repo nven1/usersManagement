@@ -15,10 +15,6 @@ const validationSchema = Yup.object().shape({
 })
 
 class LoginScreen extends Component {
-    constructor() {
-        super();
-        this.closeModal = this.closeModal.bind(this);
-    }
     render() {
         return(
             <div className="loginFormContainer">
@@ -70,7 +66,7 @@ class LoginScreen extends Component {
                                 </div>
                                 <div className = "">
                                     <button type = "submit">
-                                        Submit
+                                        Login
                                     </button>
                                 </div>
                             </form>
@@ -78,9 +74,6 @@ class LoginScreen extends Component {
                     </Formik>
                 </div>
         )
-    }
-    closeModal() {
-        this.props.toggleModal()
     }
 }
 

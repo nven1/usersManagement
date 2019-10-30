@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class UsersGridItem extends Component {
     render() {
@@ -9,6 +10,10 @@ class UsersGridItem extends Component {
             </div>
         )
     }
+}
+
+UsersGridItem.propTypes = {
+    data: PropTypes.object
 }
 
 export default UsersGridItem;

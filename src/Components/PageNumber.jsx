@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { getUsers } from '../Actions/actions';
 
 class PageNumber extends Component {
@@ -19,6 +21,11 @@ class PageNumber extends Component {
     changePage() {
         this.props.changePage(this.props.page)
     }
+}
+
+PageNumber.propTypes = {
+    page: PropTypes.number,
+    className: PropTypes.string
 }
 
 export default connect(null, {getUsers})(PageNumber);

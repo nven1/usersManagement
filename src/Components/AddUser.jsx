@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+
 import FormModal from './FormModal';
 
 
@@ -10,7 +11,6 @@ class AddUser extends Component {
         this.state = {
             showModal: false
         }
-
         this.toggleModal = this.toggleModal.bind(this);
     }
     render() {
@@ -26,7 +26,6 @@ class AddUser extends Component {
 
     toggleModal() {
         this.setState({showModal: !this.state.showModal})
-        //this.props.addUser()
     }
 }
 

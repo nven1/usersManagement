@@ -20,7 +20,6 @@ export function addUser(data) {
     return (dispatch, getState) => {
         let user = {
             data: data
-
         }
         dispatch({type: "USERS_ADD", payload: user});
         this.getUsers();

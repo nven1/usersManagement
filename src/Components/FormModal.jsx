@@ -29,6 +29,7 @@ class FormModal extends Component {
         this.closeModal = this.closeModal.bind(this);
     }
     render() {
+        console.log(this.props)
         return(
             <div className="formModalContainer">
                 <div className="formModal">
@@ -147,7 +148,6 @@ class FormModal extends Component {
                                         Submit
                                     </button>
                                 </div>
-
                             </form>
                         )}
                     </Formik>
@@ -159,6 +159,7 @@ class FormModal extends Component {
         this.props.toggleModal()
     }
 }
+
 function mapStateToProps(state) {
     return { 
         total: state.usersReducer.total,

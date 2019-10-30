@@ -8,7 +8,6 @@ class PageNumber extends Component {
         this.changePage = this.changePage.bind(this)
     }
     render() {
-        console.log(this.props)
         return(
             <button 
                 onClick={this.changePage} 

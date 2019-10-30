@@ -16,15 +16,10 @@ export function getUsers() {
     } 
 }
 
-export function addUser() {
+export function addUser(data) {
     return (dispatch, getState) => {
         let user = {
-            data: {
-                id: getState().usersReducer.total + 1,
-                first_name: 'Niki',
-                last_name: 'niki',
-                avatar: ''
-            }
+            data: data
 
         }
         dispatch({type: "USERS_ADD", payload: user});

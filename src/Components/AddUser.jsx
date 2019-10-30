@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import FormModal from './FormModal';
-import { addUser, getUsers } from '../Actions/actions';
+
 
 class AddUser extends Component {
     constructor() {
@@ -12,23 +11,23 @@ class AddUser extends Component {
             showModal: false
         }
 
-        this.showModal = this.showModal.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
     render() {
         return(
             <div className="addButtonContainer">
-                <button onClick={this.showModal}>
+                <button className = "openModalButton" onClick={this.toggleModal}>
                     <FontAwesomeIcon icon={faUserPlus} />
                 </button>
-                {(this.state.showModal)?<FormModal/>:''}
+                {(this.state.showModal)?<FormModal toggleModal={this.toggleModal}/>:''}
             </div>
         )
     }
 
-    showModal() {
-        //this.setState({showModal: true})
-        this.props.addUser()
+    toggleModal() {
+        this.setState({showModal: !this.state.showModal})
+        //this.props.addUser()
     }
 }
 
-export default connect(null, {addUser, getUsers})(AddUser);
+export default AddUser;
